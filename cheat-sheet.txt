@@ -1,0 +1,50 @@
+            =>
+client     http     app-server
+            <=
+            
+            ws
+client      <=>     app-server 
+
+
+
+0 git init
+
+1 server:
+cd server
+npm init -y
+npm install socket.io
+
+
+const { Server } = require('socket.io');
+
+// создаем ws-сервер поверх http-сервера: 
+const io = new Server(httpServer, {
+  cors: { origin: 'http://localhost:3000' },
+});
+
+// io.on('event' (payload)=>{}) ~ btn.addEventListener('click',()=>{})
+//      - подписка на событие
+
+// io.emit('event', payload)    ~ dispatch(createUserThunk(newUser))
+//      - генерация события - для всех клиентов
+// socket.emit('event', payload)
+//      - генерация события - для себя
+// socket.broadcast.emit('event', payload)
+//      - генерация события - для всех кроме для себя
+
+2 client:
+cd client
+npx create-react-app .
+npm install socket.io-client          
+
+
+import { io } from 'socket.io-client';
+
+// генерируем событие 'connection' на сервере
+const socket = io('http://localhost:5000');
+
+
+// socket.on('event', (payload) => {}); - подписка на событие
+
+// socket.emit('event', payload) - генерация события (на сервер)
+            
