@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 5000;
 const httpServer = http.createServer(() => {});
 
 // 2
-const io = new Server(httpServer, {});
+const io = new Server(httpServer, {
+  cors: { origin: 'http://localhost:3000' },
+});
 
 // io.on('event' ()=>{}) ~ btn.addEventListener('click',()=>{}) - подписка на событие
 // io.emit('event', payload) ~ dispatch(createUserThunk(newUser)) - генерация события - для всех
