@@ -25,6 +25,11 @@ io.on('connection', socket => {
   io.emit('EVENT_FOR_ALL', 'Hello for everyone from server)');
   socket.emit('EVENT_FOR_SELF', 'Hello, you connection is established');
   socket.broadcast.emit('EVENT_FOR_OTHER', 'New socket is connected');
+
+  socket.on('EVENT_FROM_SOCKET', payload => {
+    console.log('payload :>> ', payload);
+    socket.broadcast.emit('SOME_EVENT_ON_SOME_SOCKET', 'Event on some socket');
+  });
 });
 
 httpServer.listen(PORT, () =>

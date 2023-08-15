@@ -17,3 +17,9 @@ socket.on('EVENT_FOR_SELF', payload => {
 socket.on('EVENT_FOR_OTHER', payload => {
   console.log('payload for other:>> ', payload);
 });
+
+socket.emit('EVENT_FROM_SOCKET', 'Hello from client');
+
+socket.on('SOME_EVENT_ON_SOME_SOCKET', payload => {
+  console.log('payload :>> ', payload);
+});
