@@ -22,7 +22,7 @@ const io = new Server(httpServer, {
   cors: { origin: 'http://localhost:3000' },
 });
 
-// io.on('event' (payload)=>{}) ~ btn.addEventListener('click',()=>{})
+// io.on('event', (payload)=>{}) ~ btn.addEventListener('click',()=>{})
 //      - подписка на событие
 
 // io.emit('event', payload)    ~ dispatch(createUserThunk(newUser))
@@ -45,6 +45,5 @@ const socket = io('http://localhost:5000');
 
 
 // socket.on('event', (payload) => {}); - подписка на событие
-
 // socket.emit('event', payload) - генерация события (на сервер)
             
